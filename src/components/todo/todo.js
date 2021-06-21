@@ -3,16 +3,28 @@ import TodoForm from './form.js';
 import TodoList from './list.js';
 import { useState,useEffect } from 'react';
 import {Card, Container,ProgressBar, Col, Row} from 'react-bootstrap'
-// import './todo.scss';
 function ToDo (props){
 const [list,setList]= useState([])
-
 
   const addItem = (item) => {
     item._id = (parseInt)(Math.random()*100);;
     item.complete = false;
     setList( [...list, item]);
   };
+  const deleteItem=(id)=>{
+    let deletedList = list.filter(el=>id!==el._id)
+    setList(deletedList)
+  };
+  const editeItem = (id, val) => {
+    let item = list.filter(i => i._id === id)[0] || {};
+
+    console.log(val);
+    if (item._id) {
+      item.text = val;
+      let newList = list.map(listItem => listItem._id === item._id ? item : listItem);
+      setList(newList);
+    }
+  }
 
   const toggleComplete = id => {
 
@@ -37,20 +49,17 @@ const [list,setList]= useState([])
 
     setList(list);
   }
-  // let count =0;
   useEffect(
     () =>{
-      console.log(list.filter((item) => !item.complete).length);
-        document.title = `${
-          list.filter((item) => !item.complete).length
-
-        }`
+      document.title = `${
+        list.filter((item) => !item.complete).length
+        
+      }`
     },[list]
     
-      );
-// useEffect(toDoList,[])
-useEffect(toDoList,[])
-
+    );
+    useEffect(toDoList,[])
+    
     return (
       <>
         <Container>
@@ -59,6 +68,7 @@ useEffect(toDoList,[])
             <Card>
             <Card.Body>
             <Card.Title as='h2'>To Do List Manager({list.filter(item => !item.complete).length})</Card.Title>
+              
               <ProgressBar/>
                   <ProgressBar variant='success' now={
                     list.filter((item) => item.complete).length / list.length * 100
@@ -88,7 +98,7 @@ useEffect(toDoList,[])
               <Card>
                 <TodoList
                 list={list}
-                handleComplete={toggleComplete}
+                handleComplete={toggleComplete} deleteItem={deleteItem} editeItem={editeItem}
               />
               </Card>
             </Col>

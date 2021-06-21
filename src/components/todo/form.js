@@ -6,6 +6,7 @@ function TodoForm (props){
   const [item,setItem] = useState({})
   const handleInputChange = e => {
     setItem({ ...item,  [e.target.name]: e.target.value});
+
   };
 
   const handleSubmit = (e) => {
@@ -17,12 +18,11 @@ function TodoForm (props){
     setItem(addItem);
   };
 
-
     return (
       <>
       <Card.Header as='h3'>Add Item</Card.Header>
       {/* <Card.Body> */}
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} >
           <Form.Group>
           <Form.Label>To Do Item</Form.Label>
               <Form.Control name="text" placeholder="Add To Do List Item" onChange={handleInputChange}/>
@@ -38,9 +38,9 @@ function TodoForm (props){
             <Form.Control type="text" name="assignee" placeholder="Assigned To" onChange={handleInputChange} />
           </Form.Group>
 
-          <Button type='submit'>Add Item</Button>
-          
+          <Button type='submit' onClick={props.editItem}>Add Item</Button>
         </Form>
+
       {/* </Card.Body> */}
       </>
     );

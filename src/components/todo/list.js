@@ -1,28 +1,54 @@
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup ,Button,Form} from 'react-bootstrap';
+import {If ,Then} from 'react-if'
+import { useState } from 'react';
+
 // class TodoList extends React.Component {
-function TodoList(props){
-  // render() {
+function TodoList(props){ 
+  const [hide,setHide]=useState(false);
+  const [id,setId]= useState('')
+  const [update,setUpdate]=useState('');
+
+  const toggle=(id)=>{
+    setHide(!hide);
+    setId(id)
+    
+  }
+  const submitUpdate = (e) => {
+    e.preventDefault();
+    toggle(id);
+    props.editeItem(id, update);
+  };
            return (
     <ListGroup>
     
         {props.list.map(item => (
           <ListGroup.Item
-          action
-          
+          action         
           variant={item.complete?'success':'warning'}
           className={`complete-${item.complete.toString()}`}
           key={item._id}
           onClick={() => props.handleComplete(item._id)}
           >
             {item.text}
+            <Button  onClick={()=>toggle(item._id)} >Edit</Button>
+            <Button  onClick={()=>props.deleteItem(item._id)} >X</Button>
+            
+         
 
-          </ListGroup.Item>
-          
-  
-          
+          </ListGroup.Item>      
         ))}
-     
+        <If condition={hide===true}>
+                <Then>
+                    <Form>
+                      <Form.Group>
+                      <Form.Label>To Do Item</Form.Label>
+                      <Form.Control placeholder="update a task text" onChange={(e)=>setUpdate(e.target.value)}/>
+                      <Button onClick={submitUpdate}>Submit</Button>
+                      </Form.Group>
+                    </Form>
+                </Then>
+            </If>
     </ListGroup>
     );
  

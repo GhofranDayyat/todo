@@ -23,21 +23,27 @@ function TodoList(props){
     <ListGroup>
     
         {props.list.map(item => (
+        
+
+           
           <ListGroup.Item
           action         
           variant={item.complete?'success':'warning'}
           className={`complete-${item.complete.toString()}`}
           key={item._id}
-          onClick={() => props.handleComplete(item._id)}
           >
+            <span onClick={() => props.handleComplete(item._id)}>
             {item.text}
+            </span>
+            
             <Button  onClick={()=>toggle(item._id)} >Edit</Button>
             <Button  onClick={()=>props.deleteItem(item._id)} >X</Button>
-            
          
 
           </ListGroup.Item>      
-        ))}
+        ))
+        
+        }
         <If condition={hide===true}>
                 <Then>
                     <Form>

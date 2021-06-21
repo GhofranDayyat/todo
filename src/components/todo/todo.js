@@ -11,23 +11,28 @@ const [list,setList]= useState([])
     item.complete = false;
     setList( [...list, item]);
   };
+
+
   const deleteItem=(id)=>{
+    console.log(list);
     let deletedList = list.filter(el=>id!==el._id)
     setList(deletedList)
+    console.log(deletedList);
+    console.log(list);
   };
-  const editeItem = (id, val) => {
-    let item = list.filter(i => i._id === id)[0] || {};
 
-    console.log(val);
+
+  const editeItem = (id, newUpdate) => {
+    let item = list.filter(i => i._id === id)[0] || {};
+    console.log(item);
     if (item._id) {
-      item.text = val;
-      let newList = list.map(listItem => listItem._id === item._id ? item : listItem);
-      setList(newList);
+      item.text = newUpdate;
+      let updatelist = list.map(listItem => listItem._id === item._id ? item : listItem);
+      setList(updatelist);
     }
   }
 
   const toggleComplete = id => {
-
     let item = list.filter(i => i._id === id)[0] || {};
 
     if (item._id) {

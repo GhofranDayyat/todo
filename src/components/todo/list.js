@@ -17,7 +17,8 @@ function TodoList(props){
   const submitUpdate = (e) => {
     e.preventDefault();
     toggle(id);
-    props.editeItem(id, update);
+    console.log(props);
+    props.handleComplete(update);
   };
            return (
     <ListGroup>
@@ -36,8 +37,8 @@ function TodoList(props){
             {item.text}
             </span>
             
-            <Button  onClick={()=>toggle(item._id)} >Edit</Button>
-            <Button  onClick={()=>props.deleteItem(item._id)} >X</Button>
+            <Button  onClick={()=>toggle(item)} >Edit</Button>
+            <Button  onClick={()=>props.deleteItem(item)} >X</Button>
          
 
           </ListGroup.Item>      

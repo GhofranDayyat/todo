@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import TodoForm from './form.js';
-import TodoList from './list.js';
+import TodoForm from './Form';
+import TodoList from './List';
 
 import './todo.scss';
 
@@ -90,5 +90,3 @@ const ToDo = () => {
 };
 
 export default ToDo;
-
-

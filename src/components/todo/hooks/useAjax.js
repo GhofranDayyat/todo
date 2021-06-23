@@ -8,7 +8,30 @@ const useAjax = (url)=>{
 
 const [list , setList]= useState([])
 
+const hideCompleted=()=>{
+      let deletedList = list.filter(el=>!el.complete)
+    // let complete=list.map(listItem => listItem.complete ? listItem : deletedList);
 
+
+console.log(deletedList,'/*/*//////////////');
+// let update = deletedList.map(item=>{})
+  setList(deletedList)
+//   api('put',`${url}/${complete._id}`,complete)
+}
+
+const toggleComplete = id => {
+    let item = list.filter(i => i._id === id)[0] || {};
+  
+    if (item._id) {
+      item.complete = !item.complete;
+      let updatelist = list.map(listItem => listItem._id === item._id ? item : listItem);
+      setList(updatelist);
+      api('put',`${url}/${item._id}`,item)
+    }
+    // setList( list:);
+
+  };
+  
 const api = async (method, url , item)=>{
     const toDo= await axios({
         method: method,
@@ -39,12 +62,10 @@ const get = ()=>{
 
 
 const put=(id,updateText)=>{
-    console.log(list,'/*/*/*/');
     let urlExtended = `${url}/${id}`;
     
     
     let item = list.filter(i => i._id === id)[0] || {}; 
-    console.log(item,'item');
     if (item._id) {
         item.text = updateText;
         let updatelist = list.map(listItem => listItem._id === item._id ? item : listItem);
@@ -62,7 +83,7 @@ const put=(id,updateText)=>{
       }; 
 
 
-return [list, post, get, put, deleted]
+return [list,hideCompleted,toggleComplete, post, get, put, deleted]
 }
 
 

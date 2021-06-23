@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import App from './app.js';
+import ListProvider from './components/todo/context/manegerContext';
 
 // class Main extends React.Component {
 //   render() {
@@ -11,9 +11,11 @@ import App from './app.js';
 // }
 function Main (){
 return(
-  <>
-  <App/>
-  </>
+  
+  <ListProvider>
+    <App/>
+  </ListProvider>
+
 )
 
 }

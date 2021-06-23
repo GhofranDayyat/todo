@@ -1,11 +1,18 @@
 import React from 'react';
-import {useState} from 'react'
+import {useState ,useContext} from 'react'
 import {Button,Form,Card} from 'react-bootstrap';
 import useForm from './hooks/useForm';
+import  {ListContext}  from './context/manegerContext';
 
 function TodoForm (props){
   const [handleInputChange, handleSubmit ] = useForm(props)
+  const contextProps=useContext(ListContext);
+  const [display,setDisplay] =useState(contextProps.display)
 
+  const toggleDisply=()=>{
+    props.hideComplet()
+      setDisplay(  display?false:true )
+        }
     return (
       <>
       <Card.Header as='h3'>Add Item</Card.Header>
@@ -27,6 +34,8 @@ function TodoForm (props){
           </Form.Group>
 
           <Button type='submit' onClick={props.editItem}>Add Item</Button>
+          <Button  onClick={toggleDisply} >{display?'show':'Hide'} </Button>
+
         </Form>
 
       {/* </Card.Body> */}

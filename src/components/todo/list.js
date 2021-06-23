@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ListGroup ,Button,Form} from 'react-bootstrap';
 import {If ,Then} from 'react-if'
 import { useState } from 'react';
 
+
 // class TodoList extends React.Component {
-function TodoList(props){ 
+  function TodoList(props){ 
+
+
   const [hide,setHide]=useState(false);
   const [id,setId]= useState('')
   const [update,setUpdate]=useState('');
-
+  
   const toggle=(id)=>{
     setHide(!hide);
     setId(id)
@@ -17,7 +20,7 @@ function TodoList(props){
   const submitUpdate = (e) => {
     e.preventDefault();
     toggle(id);
-    props.handleComplete(id,update);
+    props.update(id,update);
 
   };
            return (
@@ -33,18 +36,23 @@ function TodoList(props){
           className={`complete-${item.complete}`}
           key={item._id}
           >
-            <span onClick={() => props.handleComplete(item._id)}>
+            <span      
+            onClick={ () => {
+               props.handleComplete(item._id);
+            }}>
             {item.text}
             </span>
             
             <Button  onClick={()=>toggle(item._id)} >Edit</Button>
             <Button  onClick={()=>props.deleteItem(item)} >X</Button>
-         
+
+            
 
           </ListGroup.Item>      
         ))
         
         }
+  
         <If condition={hide===true}>
                 <Then>
                     <Form>

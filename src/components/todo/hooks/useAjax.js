@@ -33,20 +33,23 @@ const get = ()=>{
     setList(newList.results)
         }
     getAllData()
-    setList([list]);
+    // setList([list]);
 
     }
 
 
 const put=(id,updateText)=>{
+    console.log(list,'/*/*/*/');
     let urlExtended = `${url}/${id}`;
-    api('put',urlExtended,updateText)
-    // setList( [list]);
-    let updateitem = list.filter(i => i._id === id)[0] || {};
-    if (id) {
-        updateitem.text = updateText;
-        let updatelist = list.map(listItem => listItem._id === id ? updateitem : listItem);
-        setList(updatelist);
+    
+    
+    let item = list.filter(i => i._id === id)[0] || {}; 
+    console.log(item,'item');
+    if (item._id) {
+        item.text = updateText;
+        let updatelist = list.map(listItem => listItem._id === item._id ? item : listItem);
+        api('put',urlExtended,item)
+      setList(updatelist);
     }
     }
 

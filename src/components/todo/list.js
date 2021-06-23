@@ -18,7 +18,7 @@ function TodoList(props){
     e.preventDefault();
     toggle(id);
     console.log(props);
-    props.handleComplete(id,update);
+    props.handleComplete(update);
 
   };
            return (
@@ -38,8 +38,8 @@ function TodoList(props){
             {item.text}
             </span>
             
-            <Button  onClick={()=>toggle(item._id)} >Edit</Button>
-            <Button  onClick={()=>props.deleteItem(item._id)} >X</Button>
+            <Button  onClick={()=>toggle(item)} >Edit</Button>
+            <Button  onClick={()=>props.deleteItem(item)} >X</Button>
          
 
           </ListGroup.Item>      

@@ -15,8 +15,8 @@ import ToDoConnect from './components/todo/todo-connected.js'
 export default function App(){
   return(
     <>
-      <ToDo />
-      {/* <ToDoConnect/> */}
+      {/* <ToDo /> */}
+      <ToDoConnect/>
     </>
   )
 }

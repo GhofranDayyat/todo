@@ -4,8 +4,22 @@ import {Button,Form,Card} from 'react-bootstrap';
 import useForm from './hooks/useForm';
 
 function TodoForm (props){
-  const [handleInputChange, handleSubmit ] = useForm(props)
+  // const [handleInputChange, handleSubmit ] = useForm(props)
+  const [item,setItem] = useState({})
 
+  const handleInputChange = e => {
+    setItem({ ...item,  [e.target.name]: e.target.value});
+
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    e.target.reset();
+    item.difficulty?item.difficulty=item.difficulty:item.difficulty=e.target.difficulty.value
+    props.handleSubmit(item);
+    const addItem = {};
+    setItem(addItem);
+};
     return (
       <>
       <Card.Header as='h3'>Add Item</Card.Header>

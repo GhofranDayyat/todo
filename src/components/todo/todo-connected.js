@@ -8,9 +8,9 @@ const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 
 
 const ToDo = () => {
-const [list, post, get, put, deleted]=useAjax(todoAPI)
-
+const [list,hideCompleted,toggleComplete, post, get, put, deleted]=useAjax(todoAPI)
 useEffect(() =>{document.title = `${list.filter((item) => !item.complete).length}`},[list]); //happen when list state change
+
 
 useEffect(get,[]) ///happen after initial render only
   return (
@@ -22,12 +22,18 @@ useEffect(get,[]) ///happen after initial render only
       </header>
       <section className="todo">
         <div>
-          <TodoForm handleSubmit={post} />
+          <TodoForm 
+          hideComplet ={hideCompleted} 
+          handleSubmit={post} 
+          list={list}/>
         </div>
         <div>
           <TodoList
             list={list}
-            handleComplete={put} deleteItem={deleted} 
+            
+            handleComplete={toggleComplete}  
+            update={put}  
+            deleteItem={deleted} 
           />
         </div>
       </section>

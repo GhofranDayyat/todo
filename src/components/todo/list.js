@@ -17,8 +17,7 @@ function TodoList(props){
   const submitUpdate = (e) => {
     e.preventDefault();
     toggle(id);
-    console.log(props);
-    props.handleComplete(update);
+    props.handleComplete(id,update);
 
   };
            return (
@@ -26,19 +25,19 @@ function TodoList(props){
     
         {props.list.map(item => (
         
-
+        
            
           <ListGroup.Item
           action         
           variant={item.complete?'success':'warning'}
-          className={`complete-${item.complete.toString()}`}
+          className={`complete-${item.complete}`}
           key={item._id}
           >
             <span onClick={() => props.handleComplete(item._id)}>
             {item.text}
             </span>
             
-            <Button  onClick={()=>toggle(item)} >Edit</Button>
+            <Button  onClick={()=>toggle(item._id)} >Edit</Button>
             <Button  onClick={()=>props.deleteItem(item)} >X</Button>
          
 

@@ -18,7 +18,8 @@ function TodoList(props){
     e.preventDefault();
     toggle(id);
     console.log(props);
-    props.editeItem(update);
+    props.handleComplete(id,update);
+
   };
            return (
     <ListGroup>

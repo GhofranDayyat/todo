@@ -10,8 +10,8 @@ function TodoForm (props){
   const [display,setDisplay] =useState(contextProps.display)
 
   const toggleDisply=()=>{
-    props.hideComplet()
-      setDisplay(  display?false:true )
+    setDisplay(  display?false:true )
+    props.hideComplet(display)
         }
     return (
       <>

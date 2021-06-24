@@ -8,15 +8,12 @@ const useAjax = (url)=>{
 
 const [list , setList]= useState([])
 
-const hideCompleted=()=>{
-      let deletedList = list.filter(el=>!el.complete)
-    // let complete=list.map(listItem => listItem.complete ? listItem : deletedList);
-
-
-console.log(deletedList,'/*/*//////////////');
-// let update = deletedList.map(item=>{})
-  setList(deletedList)
-//   api('put',`${url}/${complete._id}`,complete)
+const hideCompleted=(disply)=>{
+    let uncompleted = list.filter(el=>!el.complete)
+    const getAllData = async()=>{let newList= await api('get',url,)
+    setList(newList.results)
+        }
+    return disply?  getAllData(): setList(uncompleted)
 }
 
 const toggleComplete = id => {

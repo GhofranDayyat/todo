@@ -11,7 +11,7 @@ const ToDo = () => {
 const [list,hideCompleted,toggleComplete, post, get, put, deleted]=useAjax(todoAPI)
 useEffect(() =>{document.title = `${list.filter((item) => !item.complete).length}`},[list]); //happen when list state change
 
-
+console.log(get,'///////////////');
 useEffect(get,[]) ///happen after initial render only
   return (
     <>

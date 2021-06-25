@@ -1,18 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
 import useAjax from './hooks/useAjax.js';
 import './todo.scss';
+import  {ListContext}  from './context/manegerContext';
+// import Pagination from './Pagination .js';
+import axios from 'axios';
 const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 
-
-
 const ToDo = () => {
-const [list,hideCompleted,toggleComplete, post, get, put, deleted]=useAjax(todoAPI)
+
+const [list,setList,hideCompleted,toggleComplete, post, get, put, deleted]=useAjax(todoAPI)
+const listContext=useContext(ListContext)
+
+const [perScreen , setPerScreen] = useState([])
+const [currentPage , setCurrentPage] = useState(1)
+
+
 useEffect(() =>{document.title = `${list.filter((item) => !item.complete).length}`},[list]); //happen when list state change
 
-console.log(get,'///////////////');
-useEffect(get,[]) ///happen after initial render only
+useEffect(get,[]);
+
+
+// setList(list)
   return (
     <>
       <header>
@@ -25,12 +35,11 @@ useEffect(get,[]) ///happen after initial render only
           <TodoForm 
           hideComplet ={hideCompleted} 
           handleSubmit={post} 
-          list={list}/>
+          />
         </div>
         <div>
           <TodoList
             list={list}
-            
             handleComplete={toggleComplete}  
             update={put}  
             deleteItem={deleted} 

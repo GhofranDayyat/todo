@@ -10,9 +10,11 @@ function TodoForm (props){
   const [display,setDisplay] =useState(contextProps.display)
 
   const toggleDisply=()=>{
-    setDisplay(  display?false:true )
+    setDisplay( display?false:true )
     props.hideComplet(display)
         }
+
+
     return (
       <>
       <Card.Header as='h3'>Add Item</Card.Header>

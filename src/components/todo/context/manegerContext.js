@@ -1,3 +1,57 @@
+import React, { useState,useContext } from 'react';
+
+export const ListContext = React.createContext();
+
+
+function ListProvider(props) {
+  const [display, setDisplay] = useState(false);
+  const [pagination ,setPagination] =useState(3);
+  const [currentPage , setCurrentPage] = useState(1)
+
+
+  const state = {
+    display,
+    setDisplay,
+    pagination,
+    setPagination,
+    currentPage,
+    setCurrentPage
+  };
+  
+  return (
+        <ListContext.Provider value={state}>
+          {props.children}
+        </ListContext.Provider>
+    
+  );
+}
+
+export default ListProvider;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import React from 'react';
 
 
@@ -34,23 +88,3 @@
 
 // export default ListProvider; 
 
-import React, { useState } from 'react';
-
-export const ListContext = React.createContext();
-
-function ListProvider(props) {
-  const [display, setDisplay] = useState(false);
-
-  const state = {
-    display,
-    setDisplay
-  };
-
-  return (
-    <ListContext.Provider value={state}>
-      {props.children}
-    </ListContext.Provider>
-  );
-}
-
-export default ListProvider;

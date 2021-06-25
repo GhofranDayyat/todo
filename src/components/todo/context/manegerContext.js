@@ -7,6 +7,7 @@ function ListProvider(props) {
   const [display, setDisplay] = useState(false);
   const [pagination ,setPagination] =useState(3);
   const [currentPage , setCurrentPage] = useState(1)
+  const [sorting , setSorting] = useState('')
 
 
   const state = {
@@ -15,7 +16,9 @@ function ListProvider(props) {
     pagination,
     setPagination,
     currentPage,
-    setCurrentPage
+    setCurrentPage,
+    sorting,
+    setSorting
   };
   
   return (

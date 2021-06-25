@@ -13,14 +13,14 @@ const ToDo = () => {
 const [list,setList,hideCompleted,toggleComplete, post, get, put, deleted]=useAjax(todoAPI)
 const listContext=useContext(ListContext)
 
-const [perScreen , setPerScreen] = useState([])
-const [currentPage , setCurrentPage] = useState(1)
+// const [perScreen , setPerScreen] = useState([])
+// const [currentPage , setCurrentPage] = useState(1)
 
 
 useEffect(() =>{document.title = `${list.filter((item) => !item.complete).length}`},[list]); //happen when list state change
-
-useEffect(get,[]);
-
+useEffect(get,[]) //happen with initial render
+useEffect(get,[listContext.sorting]);
+// console.log(list);
 
 // setList(list)
   return (
@@ -39,7 +39,7 @@ useEffect(get,[]);
         </div>
         <div>
           <TodoList
-            list={list}
+            list={listContext.sorting==='sort'?list.sort((a, b)=> a.difficulty > b.difficulty ? 1 : -1 ) :list}
             handleComplete={toggleComplete}  
             update={put}  
             deleteItem={deleted} 

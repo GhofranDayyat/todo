@@ -1,5 +1,5 @@
 import React, { useContext,useEffect } from 'react';
-import { ListGroup ,Button,Form} from 'react-bootstrap';
+import { ListGroup ,Button,Form,Container,Dropdown,Col,DropdownButton} from 'react-bootstrap';
 import {If ,Then} from 'react-if'
 import { useState } from 'react';
 import  {ListContext}  from './context/manegerContext';
@@ -20,22 +20,30 @@ import  {ListContext}  from './context/manegerContext';
     setHide(!hide);
     setId(id)
   }
+
+  
+  const toggleSorting=()=>{
+    listContext.sorting==='sort'?listContext.setSorting(''):listContext.setSorting('sort')
+  }
+
+
   const submitUpdate = (e) => {
     e.preventDefault();
     toggle(id);
     props.update(id,update);
 
   };
-  const pageNumbers = [];
 
+
+  const pageNumbers = [];
   const changePage =(numberP)=>{
   listContext.setCurrentPage(numberP)
   indexOfLastItem = listContext.currentPage * listContext.pagination;
   indexOfFirstItem = indexOfLastItem - listContext.pagination;
   currentItem = props.list.slice(indexOfFirstItem, indexOfLastItem)
-  }
+}
 
-  //render  Pagination  incpect to item number
+// render pagination relative to item numbers
   for (let i = 1; i <= Math.ceil(props.list.length / listContext.pagination); i++) {
     pageNumbers.push(i);
   }
@@ -62,11 +70,15 @@ import  {ListContext}  from './context/manegerContext';
             <Button  onClick={()=>toggle(item._id)} >Edit</Button>
             <Button  onClick={()=>props.deleteItem(item)} >X</Button>             
 
-          </ListGroup.Item>      
+          
+          </ListGroup.Item>  
         ))
         
         }
+        <Container>
+            <Button onClick={toggleSorting} eventKey="1">{listContext.sorting==='sort'?'Unsorted':'Sorted'}</Button>
         
+          </Container>    
         
       <nav>
       <ul className='pagination'>
@@ -91,9 +103,6 @@ import  {ListContext}  from './context/manegerContext';
                     </Form>
                 </Then>
             </If>
-         {/* <Button variant="secondary" onClick={() => listContext.setCurrentPage(1)}>1</Button>{' '}
-         <Button variant="secondary" onClick={() => listContext.setCurrentPage(6)}>2</Button>{' '}
-         <Button variant="secondary" onClick={() => listContext.setCurrentPage(9)}>3</Button>{' '} */}
     </ListGroup>
     
     );

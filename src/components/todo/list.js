@@ -10,7 +10,6 @@ import  {ListContext}  from './context/manegerContext';
   const [hide,setHide]=useState(false);
   const [id,setId]= useState('')
   const [update,setUpdate]=useState('');
-  // const [perScreen , setPerScreen] = useState([])
 
   let indexOfLastItem = listContext.currentPage * listContext.pagination;
   let indexOfFirstItem = indexOfLastItem - listContext.pagination;
@@ -36,6 +35,7 @@ import  {ListContext}  from './context/manegerContext';
 
 
   const pageNumbers = [];
+
   const changePage =(numberP)=>{
   listContext.setCurrentPage(numberP)
   indexOfLastItem = listContext.currentPage * listContext.pagination;

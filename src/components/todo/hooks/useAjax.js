@@ -1,15 +1,12 @@
 import React, {useState,useEffect,useContext} from 'react';
 import axios from 'axios';
-import  {ListContext}  from '../context/manegerContext';
 export const SendTest=React.createContext()
 
 
 
 
 const useAjax = (url)=>{
-    const listContext=useContext(ListContext)
     const [list , setList]= useState([])
-    const [perScreen , setPerScreen] = useState([])
 
 
     const hideCompleted=(disply)=>{
@@ -53,9 +50,7 @@ const useAjax = (url)=>{
     const get = ()=>{
         const getAllData = async()=>{
             let newList= await api('get',url,)
-            setPerScreen(newList.results)
             setList(newList.results)
-            // setList(newList.results)
 
         }
         getAllData()

@@ -4,23 +4,15 @@ import TodoList from './list.js';
 import useAjax from './hooks/useAjax.js';
 import './todo.scss';
 import  {ListContext}  from './context/manegerContext';
-// import Pagination from './Pagination .js';
-import axios from 'axios';
 const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 
 const ToDo = () => {
-
 const [list,setList,hideCompleted,toggleComplete, post, get, put, deleted]=useAjax(todoAPI)
 const listContext=useContext(ListContext)
-
-// const [perScreen , setPerScreen] = useState([])
-// const [currentPage , setCurrentPage] = useState(1)
-
 
 useEffect(() =>{document.title = `${list.filter((item) => !item.complete).length}`},[list]); //happen when list state change
 useEffect(get,[]) //happen with initial render
 useEffect(get,[listContext.sorting]);
-// console.log(list);
 
 // setList(list)
   return (

@@ -4,7 +4,19 @@ import {If} from 'react-if'
 
 function Auth (props){
     const authContext = useContext(AuthContext)
-    let authTolog= authContext.logged && props.capability? authContext.user.capabilities.includes(props.capability): false
+    let authTolog;
+    console.log(authContext.action,'=======================');
+    if (!authContext.action) {
+        if (authContext.user) {
+            authTolog=  authContext.logged && props.capability?authContext.user.capabilities.includes(props.capability): false
+            console.log(authTolog); 
+        }
+
+    }else{
+        authTolog=  authContext.logged && props.capability? authContext.action.includes(props.capability): false
+
+    }
+
 
     return (
         <>

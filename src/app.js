@@ -11,13 +11,10 @@ export default function App(){
 
   return(
     <>
-        {/* <ToDo /> */}
-        {/* <AuthProvider> */}
-          {/* <ListProvider> */}
+
               <NavBar/>
               <Auth capability="read">
                 <ToDoConnect/>
-                <h1>hhhhhh</h1>
               </Auth>
               <Auth capability="guest">
                 <Container >
@@ -25,8 +22,7 @@ export default function App(){
                     <h2>SignUp or SignIn </h2>
                 </Container>
               </Auth> 
-          {/* </ListProvider>  */}
-        {/* </AuthProvider> */}
+
         </>
   )
 }

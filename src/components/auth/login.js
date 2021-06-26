@@ -16,6 +16,7 @@ const [password , setPassword] = useState('')
 const handelRegister=(e)=>{
   e.preventDefault();
   props.onHide()
+  console.log(username , password);
   authContext.login(username , password )
 }
 
@@ -37,7 +38,7 @@ const handelChange=(e)=>{
         <If condition={!authContext.logged}>
             <Then>
 
-                <Form  >
+                <Form  onSubmit={handelRegister} >
                 <Form.Group>
                 <Form.Label>username</Form.Label>
                     <Form.Control 
@@ -52,8 +53,8 @@ const handelChange=(e)=>{
                     type='password'
                     name='password'
                     onChange={handelChange}/>
+                <Button type='submit'>SignIn</Button>
                 </Form.Group>
-                <Button onClick={handelRegister} type='submit'>SignIn</Button>
 
                 </Form>
             </Then>

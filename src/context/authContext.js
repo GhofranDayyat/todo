@@ -47,7 +47,7 @@ function AuthProvider (props){
 
     }
     const logout=()=>{
-        setAuthState(false, null , {})
+        setAuthState(false,{} , null)
     }
     
     const signup =async (username , email , password , role)=>{

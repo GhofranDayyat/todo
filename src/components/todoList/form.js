@@ -1,8 +1,8 @@
 import React from 'react';
 import {useState ,useContext} from 'react'
 import {Button,Form,Card} from 'react-bootstrap';
-import useForm from './hooks/useForm';
-import  {ListContext}  from './context/manegerContext';
+import useForm from '../../hooks/useForm';
+import  {ListContext}  from '../../context/manegerContext';
 
 function TodoForm (props){
   const [handleInputChange, handleSubmit ] = useForm(props)

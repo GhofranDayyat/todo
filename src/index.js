@@ -1,20 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import App from './app.js';
-import ListProvider from './components/todo/context/manegerContext';
+import ReactDOM from 'react-dom';
+import  App from './app.js';
+import ListProvider from './context/manegerContext';
+import AuthProvider from './context/authContext.js';
 
-// class Main extends React.Component {
-//   render() {
-//     return <App />;
-//   }
-// }
 function Main (){
 return(
-  
-  <ListProvider>
-    <App/>
-  </ListProvider>
+    <AuthProvider>
+      <ListProvider>
+        <App/>
+      </ListProvider>
+    </AuthProvider>
+      
+
+
 
 )
 

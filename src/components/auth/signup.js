@@ -15,7 +15,8 @@ function Signup(props) {
     const handleSubmit=(e)=>{
         e.preventDefault();
         props.onHide()
-        authContext.signup(username, password, email , role)
+        console.log(e.target.role.value);
+        authContext.signup(username, password, email , e.target.role.value)
 
 }
 
@@ -27,7 +28,7 @@ const handelChange=(e)=>{
     }else if(e.target.name === 'email'){
         setEmail(e.target.value)
 
-    }else{
+    }else if(e.target.name === 'role'){
         setRole(e.target.value)
     }
 }
@@ -37,7 +38,7 @@ const handelChange=(e)=>{
         <If condition={!authContext.logged}>
             <Then>
 
-                <Form >
+                <Form onSubmit={handleSubmit} >
                 <Form.Group>
                 <Form.Label>UserName</Form.Label>
                     <Form.Control 
@@ -65,16 +66,15 @@ const handelChange=(e)=>{
                 <Form.Group>
                 <Form.Label>Role</Form.Label> 
                     <Form.Control 
-                    type='email'
                     name='role' as='select'
-                    onChange={handelChange}>
+                    >
                         <option value='admin'>Admin</option>
                         <option value='user'>User</option>
                         <option value='editor'>Editor</option>
                     </Form.Control>
                 </Form.Group>
+                <Button  variant='info' type='submit'>Sign  Up</Button>
                 </Form>
-                <Button onClick={handleSubmit}  variant='info' type='submit'>Sign  Up</Button>
 
             </Then>
         </If>
